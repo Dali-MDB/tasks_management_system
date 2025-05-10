@@ -2,14 +2,13 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('tasks/', views.get_all_tasks, name='get_all_tasks'),
-    path('tasks/<int:pk>/', views.task_detail, name='task_detail'),
+    path('tasks/<int:pk>/', views.task_detail.as_view(), name='task_detail'),
     path('tasks/my-tasks/', views.get_my_assigned_tasks, name='get_my_assigned_tasks'),
     path('tasks/my-managed-tasks/', views.get_my_managed_tasks, name='get_my_managed_tasks'),
     path('tasks/<int:pk>/complete/', views.complete_task, name='complete_task'),    
     path('projects/', views.get_all_projects, name='get_all_projects'),
-    path('projects/<int:pk>/', views.project_detail, name='project_detail'),
+    path('projects/<int:pk>/', views.project_detail.as_view(), name='project_detail'),
     path('projects/my-projects/', views.get_my_managed_projects, name='get_my_managed_projects'),
     path('projects/my-projects/', views.get_my_projects, name='get_my_projects'),
     path('projects/<int:pk>/add-task/', views.add_task_to_project, name='add_task_to_project'),
@@ -24,8 +23,6 @@ urlpatterns = [
     path('contributor-requests/<int:pk>/reject/', views.reject_contributor_request, name='reject_contributor_request'),
     path('contributor-requests/<int:pk>/send/', views.send_contributor_request, name='send_contributor_request'),
     path('contributor-requests/<int:pk>/cancel/', views.cancel_contributor_request, name='cancel_contributor_request'),
-    
-    
     
 ]
 

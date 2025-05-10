@@ -61,3 +61,12 @@ class ProfileView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+def refresh_token(request):
+    refresh_token = request.data.get('refresh_token')
+    token = RefreshToken(refresh_token)
+    access_token = str(token.access_token)
+    return Response({'access_token': access_token}, status=status.HTTP_200_OK)
+
+
